@@ -49,6 +49,7 @@
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      overflow-y: scroll;
     }
 
     body.is-locked {
@@ -291,6 +292,14 @@
       color: #e6f5f8;
     }
 
+    .hero-image {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 14px;
+      border: 1px solid rgba(198, 238, 230, 0.34);
+    }
+
     .hero-panel h3 {
       color: #f5fcff;
       font-size: 1.25rem;
@@ -341,6 +350,22 @@
 
     .soft-section .muted {
       color: #c0d4dc;
+    }
+
+    .offer-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .offer-image {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid rgba(173, 212, 224, 0.35);
+      object-fit: cover;
+      max-height: 310px;
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.18);
     }
 
     .grid-3 {
@@ -408,11 +433,43 @@
       color: var(--brand);
     }
 
+    .process-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .process-image {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid #d7c5a9;
+      object-fit: cover;
+      max-height: 360px;
+      box-shadow: 0 14px 28px rgba(8, 28, 36, 0.12);
+    }
+
     .testimonials {
       display: grid;
       gap: 0.9rem;
       margin-top: 1rem;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .story-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 360px);
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .story-image {
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid #d7c5a9;
+      box-shadow: 0 14px 28px rgba(8, 28, 36, 0.12);
+      object-fit: cover;
+      max-height: 320px;
     }
 
     blockquote {
@@ -509,10 +566,78 @@
       pointer-events: auto;
     }
 
+    .success-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 21, 30, 0.62);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      z-index: 120;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+
+    .success-overlay.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .success-card {
+      width: min(480px, 100%);
+      background: var(--card);
+      border: 1px solid #d7c5a9;
+      border-radius: 16px;
+      padding: 1rem;
+      box-shadow: 0 18px 40px rgba(3, 20, 29, 0.3);
+      text-align: center;
+    }
+
+    .success-title {
+      margin: 0 0 0.35rem;
+      font-size: 1.3rem;
+      color: #0d2430;
+    }
+
+    .success-text {
+      margin: 0 0 0.9rem;
+      color: #33505d;
+      font-weight: 600;
+    }
+
+    .progress-wrap {
+      width: 100%;
+      height: 12px;
+      border-radius: 999px;
+      background: #ebdfcf;
+      overflow: hidden;
+      border: 1px solid #d7c5a9;
+      margin-bottom: 0.5rem;
+    }
+
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #0f7d73, #13a495);
+      transition: width 0.15s linear;
+    }
+
+    .progress-label {
+      font-size: 0.85rem;
+      color: #31505c;
+      font-weight: 700;
+    }
+
     .modal-dialog {
       width: min(980px, 100%);
       max-height: calc(100vh - 2rem);
-      overflow: auto;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      scrollbar-gutter: stable both-edges;
       background: var(--paper);
       border: 1px solid #d7c5a9;
       border-radius: 18px;
@@ -638,6 +763,32 @@
       color: #5a6e77;
     }
 
+    .form-status {
+      display: none;
+      margin: 0 0 0.75rem;
+      padding: 0.62rem 0.78rem;
+      border-radius: 10px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .form-status.is-show {
+      display: block;
+    }
+
+    .form-status.is-success {
+      color: #0b7a57;
+      background: #e9f8ef;
+      border-color: #a7dfbe;
+    }
+
+    .form-status.is-error {
+      color: #b42318;
+      background: #fdecec;
+      border-color: #f1b2b0;
+    }
+
     footer {
       padding: 1.6rem 0 2.3rem;
       text-align: center;
@@ -648,6 +799,12 @@
     @media (max-width: 1060px) {
       .hero-grid,
       .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .offer-layout,
+      .process-layout,
+      .story-grid {
         grid-template-columns: 1fr;
       }
     }
@@ -725,7 +882,7 @@
         <a href="#process">How it works</a>
         <a href="#faq">FAQ</a>
       </nav>
-      <a class="btn btn-primary schedule-btn" href="#contact-modal">Unlock My Wealth Blueprint</a>
+      <button class="btn btn-primary schedule-btn" type="button">Unlock My Wealth Blueprint</button>
     </div>
   </header>
 
@@ -737,12 +894,18 @@
           <h1>Plan Smart. Invest Better. <span class="headline-accent">Retire Free.</span></h1>
           <p class="lead">Vinayak Finvest helps individuals and families turn scattered investing into a focused wealth plan with clear milestones and real retirement confidence.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary schedule-btn" href="#contact-modal">Unlock My Wealth Blueprint</a>
+            <button class="btn btn-primary schedule-btn" type="button">Unlock My Wealth Blueprint</button>
             <a class="btn btn-secondary" href="#process">See How It Works</a>
           </div>
         </div>
 
         <aside class="hero-panel" aria-label="Value summary">
+          <img
+            class="hero-image"
+            src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=900&q=80"
+            alt="Financial advisor discussing wealth planning with a client"
+            loading="lazy"
+          />
           <h3>Your Financial Dashboard Starts Here</h3>
           <div class="mini-grid">
             <div class="mini-stat">
@@ -765,9 +928,19 @@
 
     <section class="section soft-section" id="offer">
       <div class="container">
-        <h2>Stop Guessing. Start Investing With a Clear Plan.</h2>
-        <p class="muted">Most people are not short on earning potential. They are short on direction. Random investments, delayed decisions, and unclear retirement targets create stress and lost opportunities.</p>
-        <p class="muted">At Vinayak Finvest, you get a strategy built around your income stage, risk comfort, and life goals so every decision moves you toward financial freedom.</p>
+        <div class="offer-layout">
+          <div>
+            <h2>Stop Guessing. Start Investing With a Clear Plan.</h2>
+            <p class="muted">Most people are not short on earning potential. They are short on direction. Random investments, delayed decisions, and unclear retirement targets create stress and lost opportunities.</p>
+            <p class="muted">At Vinayak Finvest, you get a strategy built around your income stage, risk comfort, and life goals so every decision moves you toward financial freedom.</p>
+          </div>
+          <img
+            class="offer-image"
+            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=900&q=80"
+            alt="Planner reviewing financial goals and long-term strategy documents"
+            loading="lazy"
+          />
+        </div>
       </div>
     </section>
 
@@ -797,30 +970,46 @@
     <section class="section" id="process">
       <div class="container">
         <h2>Your 3-Step Path to Financial Freedom</h2>
-        <ol class="process">
-          <li>
-            <h3>Discovery Session</h3>
-            <p>We map your current cash flow, savings behavior, concerns, and future goals.</p>
-          </li>
-          <li>
-            <h3>Custom Wealth Blueprint</h3>
-            <p>You receive a personalized investment and retirement plan with clear execution steps.</p>
-          </li>
-          <li>
-            <h3>Review and Optimize</h3>
-            <p>We revisit progress regularly and adjust your plan as income, goals, or market conditions change.</p>
-          </li>
-        </ol>
+        <div class="process-layout">
+          <ol class="process">
+            <li>
+              <h3>Discovery Session</h3>
+              <p>We map your current cash flow, savings behavior, concerns, and future goals.</p>
+            </li>
+            <li>
+              <h3>Custom Wealth Blueprint</h3>
+              <p>You receive a personalized investment and retirement plan with clear execution steps.</p>
+            </li>
+            <li>
+              <h3>Review and Optimize</h3>
+              <p>We revisit progress regularly and adjust your plan as income, goals, or market conditions change.</p>
+            </li>
+          </ol>
+          <img
+            class="process-image"
+            src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80"
+            alt="Dashboard showing investment performance and financial growth trends"
+            loading="lazy"
+          />
+        </div>
       </div>
     </section>
 
     <section class="section" id="social-proof">
       <div class="container">
         <h2>Client Outcomes</h2>
-        <div class="testimonials">
-          <blockquote>"I stopped random investing and now follow one clear strategy every month."</blockquote>
-          <blockquote>"For the first time, I know how much I need for retirement and how to reach it."</blockquote>
-          <blockquote>"The advice felt personal, practical, and focused on my actual life goals."</blockquote>
+        <div class="story-grid">
+          <div class="testimonials">
+            <blockquote>"I stopped random investing and now follow one clear strategy every month."</blockquote>
+            <blockquote>"For the first time, I know how much I need for retirement and how to reach it."</blockquote>
+            <blockquote>"The advice felt personal, practical, and focused on my actual life goals."</blockquote>
+          </div>
+          <img
+            class="story-image"
+            src="https://images.unsplash.com/photo-1579621970795-87facc2f976d?auto=format&fit=crop&w=800&q=80"
+            alt="Person reviewing investment growth charts on a laptop"
+            loading="lazy"
+          />
         </div>
         <ul class="metrics">
           <li>350+ planning sessions</li>
@@ -863,7 +1052,7 @@
         <div class="cta-strip">
           <h2>Ready to Build Wealth With a Plan That Actually Fits Your Life?</h2>
           <p>Book your discovery call and get clear next steps for investing, retirement, and long-term financial security.</p>
-          <a class="btn btn-primary schedule-btn" href="#contact-modal">Unlock My Wealth Blueprint</a>
+          <button class="btn btn-primary schedule-btn" type="button">Unlock My Wealth Blueprint</button>
         </div>
       </div>
     </section>
@@ -882,10 +1071,11 @@
           <p>Complete this form and Vinayak Finvest will contact you with the next steps for your personalized discovery call.</p>
         </div>
 
-        <form class="contact-form" action="https://formsubmit.co/mohitshar2610@gmail.com" method="POST">
+        <form class="contact-form" action="https://formsubmit.co/sourabhs658@gmail.com" method="POST">
           <input type="hidden" name="_subject" value="New Discovery Call Lead - Vinayak Finvest" />
           <input type="hidden" name="_template" value="table" />
           <input class="hidden-field" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
           <div class="form-grid">
             <div class="field full name-large">
               <label for="fullName">Full Name</label>
@@ -923,15 +1113,34 @@
     </div>
   </div>
 
+  <div class="success-overlay" id="success-modal" aria-hidden="true">
+    <div class="success-card" role="status" aria-live="polite">
+      <h3 class="success-title">Submission Received</h3>
+      <p class="success-text">You are on the way to your financial journey.</p>
+      <div class="progress-wrap" aria-hidden="true">
+        <div class="progress-bar" id="success-progress"></div>
+      </div>
+      <div class="progress-label" id="success-progress-label">0%</div>
+    </div>
+  </div>
+
   <script>
     (function () {
+      var FORCE_SUCCESS_PREVIEW = false;
       var scheduleButtons = document.querySelectorAll('.schedule-btn');
       var modal = document.getElementById('contact-modal');
+      var successModal = document.getElementById('success-modal');
+      var successProgress = document.getElementById('success-progress');
+      var successProgressLabel = document.getElementById('success-progress-label');
       var closeButton = document.getElementById('close-modal');
       var leadForm = modal ? modal.querySelector('.contact-form') : null;
       var submitButton = document.getElementById('lead-submit');
+      var formStatus = document.getElementById('form-status');
       var nameInput = document.getElementById('fullName');
       var lastFocusedElement = null;
+      var closeTimer = null;
+      var successTimer = null;
+      var progressTimer = null;
 
       if (!scheduleButtons.length || !modal || !closeButton || !leadForm || !nameInput) return;
 
@@ -951,13 +1160,68 @@
       }
 
       function closeModal() {
+        if (closeTimer) {
+          clearTimeout(closeTimer);
+          closeTimer = null;
+        }
         modal.classList.remove('open');
         modal.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('is-locked');
         leadForm.classList.remove('active-focus');
+        if (formStatus) {
+          formStatus.textContent = '';
+          formStatus.classList.remove('is-show', 'is-success', 'is-error');
+        }
+        if (submitButton) {
+          submitButton.disabled = false;
+          submitButton.textContent = 'Submit';
+        }
         if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
           lastFocusedElement.focus();
         }
+      }
+
+      function closeSuccessModal() {
+        if (successTimer) {
+          clearTimeout(successTimer);
+          successTimer = null;
+        }
+        if (progressTimer) {
+          clearInterval(progressTimer);
+          progressTimer = null;
+        }
+        if (successModal) {
+          successModal.classList.remove('open');
+          successModal.setAttribute('aria-hidden', 'true');
+        }
+        document.body.classList.remove('is-locked');
+        if (successProgress) successProgress.style.width = '0%';
+        if (successProgressLabel) successProgressLabel.textContent = '0%';
+      }
+
+      function openSuccessModal() {
+        var progress = 0;
+        closeSuccessModal();
+        if (!successModal) return;
+        successModal.classList.add('open');
+        successModal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('is-locked');
+        if (successProgress) successProgress.style.width = '0%';
+        if (successProgressLabel) successProgressLabel.textContent = '0%';
+
+        progressTimer = setInterval(function () {
+          progress += 1;
+          if (successProgress) successProgress.style.width = progress + '%';
+          if (successProgressLabel) successProgressLabel.textContent = progress + '%';
+          if (progress >= 100) {
+            clearInterval(progressTimer);
+            progressTimer = null;
+          }
+        }, 20);
+
+        successTimer = setTimeout(function () {
+          closeSuccessModal();
+        }, 2400);
       }
 
       scheduleButtons.forEach(function (button) {
@@ -994,12 +1258,62 @@
         }
       });
 
-      leadForm.addEventListener('submit', function () {
+      leadForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
         if (submitButton) {
           submitButton.disabled = true;
           submitButton.textContent = 'Submitting...';
         }
-        closeModal();
+        if (formStatus) {
+          formStatus.textContent = 'Sending your details...';
+          formStatus.classList.add('is-show');
+          formStatus.classList.remove('is-success', 'is-error');
+        }
+
+        if (FORCE_SUCCESS_PREVIEW) {
+          if (formStatus) {
+            formStatus.textContent = 'You are on the way to your financial journey.';
+            formStatus.classList.add('is-success');
+          }
+          leadForm.reset();
+          closeModal();
+          openSuccessModal();
+          return;
+        }
+
+        fetch(leadForm.action, {
+          method: 'POST',
+          body: new FormData(leadForm),
+          mode: 'cors',
+          headers: {
+            Accept: 'application/json'
+          }
+        }).then(function (response) {
+          if (!response.ok) {
+            throw new Error('Submission failed');
+          }
+
+          if (formStatus) {
+            formStatus.textContent = 'You are on the way to your financial journey.';
+            formStatus.classList.add('is-show');
+            formStatus.classList.add('is-success');
+          }
+
+          leadForm.reset();
+          closeModal();
+          openSuccessModal();
+        }).catch(function () {
+          if (formStatus) {
+            formStatus.textContent = 'Could not submit right now. Please try again.';
+            formStatus.classList.add('is-show');
+            formStatus.classList.add('is-error');
+          }
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Submit';
+          }
+        });
       });
     })();
   </script>
