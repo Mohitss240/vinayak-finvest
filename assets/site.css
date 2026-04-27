@@ -1331,3 +1331,11 @@ textarea:focus-visible {
     gap: 0.55rem;
   }
 }
+
+.footer {
+      padding: 1.6rem 0 2.3rem;
+      text-align: center;
+      color: #556871;
+      font-size: 0.9rem;
+      background-color: black;
+    }

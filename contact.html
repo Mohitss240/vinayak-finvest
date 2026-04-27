@@ -6,6 +6,7 @@
   <title>Contact Us | Vinayak Finvest</title>
   <meta name="description" content="Contact Vinayak Finvest for investment, insurance and retirement planning inquiries." />
   <link rel="stylesheet" href="assets/site.css" />
+  <link rel="stylesheet" href="assets/site.css" />
 </head>
 <body>
   <div class="top-strip">
@@ -131,7 +132,7 @@
     <div class="progress-modal">
       <div class="progress-header">
         <h2>Submission Received</h2>
-        <p>You are one step away from unlocking your growth potential</p>
+        <p>You are on the way to your financial journey.</p>
       </div>
       <div class="progress-wrapper">
         <div class="progress-track">
@@ -152,5 +153,129 @@
   </footer>
   <a class="whatsapp-float" href="https://wa.me/918670099006?text=Hello%20Vinayak%20Finvest%2C%20I%20want%20to%20know%20more%20about%20financial%20planning." target="_blank" rel="noopener" aria-label="Chat with Vinayak Finvest on WhatsApp" title="Chat on WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.04 3C8.86 3 3.03 8.7 3.03 15.72c0 2.24.6 4.42 1.74 6.35L3 29l7.11-1.82a13.25 13.25 0 0 0 5.93 1.43c7.18 0 13.01-5.7 13.01-12.72S23.22 3 16.04 3Zm0 23.36c-1.9 0-3.76-.5-5.38-1.45l-.39-.23-4.22 1.08 1.12-4.01-.26-.41a10.37 10.37 0 0 1-1.6-5.62c0-5.78 4.81-10.48 10.73-10.48s10.73 4.7 10.73 10.48-4.81 10.64-10.73 10.64Zm5.88-7.84c-.32-.16-1.9-.91-2.2-1.02-.29-.1-.5-.16-.72.16-.21.31-.83 1.02-1.02 1.22-.19.21-.38.23-.7.08-.32-.16-1.36-.49-2.59-1.55-.96-.83-1.61-1.86-1.8-2.17-.19-.31-.02-.48.14-.64.15-.14.32-.37.48-.55.16-.18.21-.31.32-.52.11-.21.05-.39-.03-.55-.08-.16-.72-1.7-.99-2.33-.26-.61-.53-.53-.72-.54h-.61c-.21 0-.55.08-.83.39-.29.31-1.1 1.05-1.1 2.56s1.13 2.98 1.29 3.18c.16.21 2.22 3.31 5.38 4.64.75.31 1.34.5 1.8.64.76.23 1.45.2 1.99.12.61-.09 1.9-.76 2.17-1.49.27-.73.27-1.36.19-1.49-.08-.13-.29-.21-.61-.36Z"/></svg></a>
   <script src="assets/site.js"></script>
+  <script>
+    (function () {
+      var contactForm = document.querySelector('.contact-form');
+      var submitButton = document.getElementById('lead-submit');
+      var formStatus = document.getElementById('form-status');
+      var progressOverlay = document.getElementById('progress-overlay');
+      var progressFill = document.getElementById('progress-fill');
+      var progressLabel = document.getElementById('progress-label');
+      
+      // Debug logging
+      console.log('Form Script Started');
+      console.log('Form found:', contactForm);
+      console.log('Submit button found:', submitButton);
+
+      if (!contactForm || !submitButton) {
+        console.error('Form or submit button not found');
+        return;
+      }
+
+      // Handle submit button click
+      submitButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        console.log('Submit button clicked');
+
+        // Validate form
+        if (!contactForm.reportValidity()) {
+          console.log('Form validation failed');
+          return;
+        }
+
+        handleFormSubmit();
+      });
+
+      // Also handle form submission
+      contactForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        console.log('Form submit event fired');
+        handleFormSubmit();
+      });
+
+      function handleFormSubmit() {
+        console.log('Handling form submission');
+        
+        // Disable submit button
+        submitButton.disabled = true;
+        submitButton.textContent = 'Submitting...';
+
+        // Show status message
+        if (formStatus) {
+          formStatus.textContent = 'Sending your details...';
+          formStatus.style.display = 'block';
+          formStatus.className = 'form-status is-show';
+        }
+
+        var formAction = contactForm.action;
+        console.log('Sending to:', formAction);
+
+        // Send form data
+        fetch(formAction, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          mode: 'cors',
+          headers: {
+            Accept: 'application/json'
+          }
+        }).then(function (response) {
+          console.log('Response received:', response.status);
+          if (!response.ok) {
+            throw new Error('Submission failed with status ' + response.status);
+          }
+          // FormSubmit.co returns HTML, not JSON, so don't try to parse as JSON
+          return response;
+        }).then(function (response) {
+          console.log('Success: Form submitted successfully');
+          
+          // Success state
+          if (formStatus) {
+            formStatus.textContent = 'You are on the way to your financial journey.';
+            formStatus.className = 'form-status is-show is-success';
+          }
+
+          // Show progress overlay
+          if (progressOverlay) {
+            progressOverlay.style.display = 'flex';
+            animateProgress();
+          }
+
+          // Reset form
+          contactForm.reset();
+          submitButton.disabled = false;
+          submitButton.textContent = 'Submit';
+        }).catch(function (error) {
+          console.error('Error during submission:', error);
+          if (formStatus) {
+            formStatus.textContent = 'Could not submit right now. Please try again.';
+            formStatus.className = 'form-status is-show is-error';
+          }
+          submitButton.disabled = false;
+          submitButton.textContent = 'Submit';
+        });
+      }
+
+      function animateProgress() {
+        var progress = 0;
+        if (progressFill) progressFill.style.width = '0%';
+        if (progressLabel) progressLabel.textContent = '0%';
+
+        var interval = setInterval(function () {
+          progress += 1;
+          if (progressFill) progressFill.style.width = progress + '%';
+          if (progressLabel) progressLabel.textContent = progress + '%';
+          
+          if (progress >= 100) {
+            clearInterval(interval);
+            setTimeout(function () {
+              if (progressOverlay) progressOverlay.style.display = 'none';
+              // Redirect to homepage
+              window.location.href = 'index.html';
+            }, 800);
+          }
+        }, 20);
+      }
+    })();
+  </script>
 </body>
 </html>
