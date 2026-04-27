@@ -85,51 +85,40 @@
           </div>
         </aside>
 
-        <form class="contact-form inquiry-form" action="https://formsubmit.co/8a6b21f3a637cd6ecda96e3eb9ede1bb" method="POST" novalidate>
-          <div class="form-heading">
-            <p class="eyebrow dark">Inquiry Form</p>
-            <h2>Tell us how we can help.</h2>
-            <p>Fill in the details below and we will get back to you.</p>
-          </div>
-
-          <input type="hidden" name="_subject" value="New Inquiry - Vinayak Finvest" />
+                <form class="contact-form" action="https://formsubmit.co/8a6b21f3a637cd6ecda96e3eb9ede1bb" method="POST">
+          <input type="hidden" name="_subject" value="New Discovery Call Lead - Vinayak Finvest" />
           <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_replyto" id="replyToEmail" value="" />
-          <input type="hidden" name="Submission ID" id="submissionId" value="" />
-          <input type="hidden" name="Submitted At" id="submittedAt" value="" />
           <input class="hidden-field" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-
           <div class="form-grid">
-            <div class="field">
-              <label for="fullName">Name*</label>
-              <input id="fullName" name="Name" type="text" autocomplete="name" minlength="2" pattern="[A-Za-z ]{2,}" title="Enter your full name using letters and spaces only." required />
+            <div class="field full name-large">
+              <label for="fullName">Full Name</label>
+              <input id="fullName" name="Full Name" type="text" autocomplete="name" minlength="2" required />
             </div>
             <div class="field">
-              <label for="phone">Mobile No*</label>
-              <input id="phone" name="Phone" type="tel" autocomplete="tel" inputmode="numeric" pattern="[6-9][0-9]{9}" maxlength="10" title="Enter a valid 10-digit Indian mobile number." required />
-            </div>
-            <div class="field">
-              <label for="email">Email ID*</label>
+              <label for="email">Email</label>
               <input id="email" name="Email" type="email" autocomplete="email" required />
             </div>
             <div class="field">
-              <label for="goal">Subject*</label>
-              <select id="goal" name="Subject" required>
+              <label for="phone">Phone Number</label>
+              <input id="phone" name="Phone Number" type="tel" autocomplete="tel" inputmode="tel" />
+            </div>
+            <div class="field full">
+              <label for="goal">Primary Focus</label>
+              <select id="goal" name="Primary Goal" required>
                 <option value="">Select</option>
-                <option>Mutual fund planning</option>
-                <option>Insurance planning</option>
-                <option>Retirement planning</option>
-                <option>Portfolio review</option>
+                <option>Start disciplined investing</option>
+                <option>Retirement planning roadmap</option>
+                <option>Portfolio restructuring</option>
+                <option>Long-term wealth strategy</option>
               </select>
             </div>
             <div class="field full">
-              <label for="message">Message*</label>
-              <textarea id="message" name="Message" placeholder="Tell us how we can help." minlength="10" required></textarea>
+              <label for="message">Current Challenge</label>
+              <textarea id="message" name="Client Message" placeholder="Tell us where you feel stuck financially." required></textarea>
             </div>
             <div class="field full">
-              <button class="btn btn-primary form-submit" type="submit" id="lead-submit">Submit Inquiry</button>
+              <button class="btn btn-primary" type="submit" id="lead-submit">Submit</button>
               <p class="notice">Your details are sent securely to the Vinayak Finvest inbox.</p>
             </div>
           </div>
@@ -137,6 +126,23 @@
       </div>
     </section>
   </main>
+
+  <div class="progress-overlay" id="progress-overlay">
+    <div class="progress-modal">
+      <div class="progress-header">
+        <h2>Submission Received</h2>
+        <p>You are one step away from unlocking your growth potential</p>
+      </div>
+      <div class="progress-wrapper">
+        <div class="progress-track">
+          <div class="progress-fill" id="progress-fill" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+        </div>
+        <span class="progress-label" id="progress-label">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <iframe name="submission-frame" class="hidden-iframe" aria-hidden="true"></iframe>
 
   <footer class="footer">
     <div class="container">
