@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Financial Calculators | Vinayak Finvest</title>
+  <meta name="description" content="Use Vinayak Finvest financial calculators for SIP, lump sum, EMI, retirement and savings goal estimates." />
+  <link rel="stylesheet" href="assets/site.css" />
+</head>
+<body>
+  <div class="top-strip"><div class="container top-strip-inner"><div class="contact-links"><a href="tel:+918670099006">Call: +91 86700 99006</a><a href="mailto:sourabhs658@gmail.com">Email: sourabhs658@gmail.com</a></div><span>Personal finance, investment and retirement guidance</span></div></div>
+  <header class="header"><div class="container header-inner"><a href="index.html" class="brand"><img src="assets/logo.png" alt="Vinayak Finvest logo" /><span>Vinayak Finvest</span></a><div class="amfi-line">Mutual Fund, Insurance & Wealth Planning Partner</div><a class="btn btn-primary" href="contact.html">Inquiry Now</a></div></header>
+  <nav class="main-nav"><div class="container"><a href="index.html">Home</a><a href="about.html">About Us</a><a href="products.html">Products</a><a href="planning.html">Planning</a><a href="calculators.html" aria-current="page">Calculators</a><a href="contact.html">Contact Us</a></div></nav>
+
+  <main>
+    <section class="page-hero calculator-hero">
+      <div class="container page-hero-grid">
+        <div>
+          <p class="eyebrow">Calculators</p>
+          <h1>Estimate before you decide.</h1>
+          <p>Use these simple planning tools to explore investment growth, loan payments, retirement targets and savings goals.</p>
+        </div>
+        <div class="hero-callout">
+          <strong>Important</strong>
+          <span>These calculators are for illustration only. Actual outcomes can vary with market returns, costs, taxes and product terms.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="calculator-intro">
+          <div>
+            <p class="eyebrow dark">Planning Tools</p>
+            <h2>Choose a calculator and adjust the numbers.</h2>
+          </div>
+          <p>Results update instantly as you type, so you can compare different assumptions quickly.</p>
+        </div>
+
+        <div class="calculator-tabs" role="tablist" aria-label="Financial calculators">
+          <button class="calculator-tab active" type="button" data-calculator="sip"><strong>SIP</strong><span>Monthly investing</span></button>
+          <button class="calculator-tab" type="button" data-calculator="lumpsum"><strong>Lump Sum</strong><span>One-time investing</span></button>
+          <button class="calculator-tab" type="button" data-calculator="emi"><strong>EMI</strong><span>Loan repayment</span></button>
+          <button class="calculator-tab" type="button" data-calculator="retirement"><strong>Retirement</strong><span>Future corpus</span></button>
+          <button class="calculator-tab" type="button" data-calculator="goal"><strong>Goal Savings</strong><span>Monthly target</span></button>
+        </div>
+
+        <div class="calculator-shell">
+          <form class="calculator-card active" id="calc-sip" data-calculator-panel="sip">
+            <div class="calculator-copy">
+              <h2>SIP Calculator</h2>
+              <p>Estimate the future value of a monthly investment.</p>
+              <ul class="calculator-tips"><li>Use a realistic long-term return assumption.</li><li>Increase the monthly amount to see its impact.</li></ul>
+            </div>
+            <div class="calculator-fields">
+              <label>Monthly investment <input type="number" name="monthly" value="10000" min="0" /></label>
+              <label class="range-field">Expected annual return (%) <span><input type="range" name="rateSlider" value="12" min="0" max="25" step="0.1" data-sync="rate" /><input class="mini-input" type="number" name="rate" value="12" min="0" max="25" step="0.1" data-sync="rateSlider" /></span></label>
+              <label class="range-field">Time period (years) <span><input type="range" name="yearsSlider" value="15" min="1" max="40" step="1" data-sync="years" /><input class="mini-input" type="number" name="years" value="15" min="1" max="40" step="1" data-sync="yearsSlider" /></span></label>
+            </div>
+            <div class="calculator-result"><span>Estimated value</span><strong data-result="maturity">-</strong><small data-result="invested">-</small><small data-result="gain">-</small></div>
+          </form>
+
+          <form class="calculator-card" id="calc-lumpsum" data-calculator-panel="lumpsum">
+            <div class="calculator-copy">
+              <h2>Lump Sum Calculator</h2>
+              <p>Estimate how a one-time investment may grow over time.</p>
+              <ul class="calculator-tips"><li>Useful for bonuses, surplus cash or matured deposits.</li><li>Longer time periods can change outcomes significantly.</li></ul>
+            </div>
+            <div class="calculator-fields">
+              <label>Investment amount <input type="number" name="principal" value="100000" min="0" /></label>
+              <label class="range-field">Expected annual return (%) <span><input type="range" name="rateSlider" value="10" min="0" max="25" step="0.1" data-sync="rate" /><input class="mini-input" type="number" name="rate" value="10" min="0" max="25" step="0.1" data-sync="rateSlider" /></span></label>
+              <label class="range-field">Time period (years) <span><input type="range" name="yearsSlider" value="10" min="1" max="40" step="1" data-sync="years" /><input class="mini-input" type="number" name="years" value="10" min="1" max="40" step="1" data-sync="yearsSlider" /></span></label>
+            </div>
+            <div class="calculator-result"><span>Estimated value</span><strong data-result="maturity">-</strong><small data-result="invested">-</small><small data-result="gain">-</small></div>
+          </form>
+
+          <form class="calculator-card" id="calc-emi" data-calculator-panel="emi">
+            <div class="calculator-copy">
+              <h2>Loan EMI Calculator</h2>
+              <p>Estimate monthly loan repayment and total interest.</p>
+              <ul class="calculator-tips"><li>Compare different tenures before borrowing.</li><li>A lower EMI may still mean higher total interest.</li></ul>
+            </div>
+            <div class="calculator-fields">
+              <label>Loan amount <input type="number" name="principal" value="500000" min="0" /></label>
+              <label class="range-field">Annual interest rate (%) <span><input type="range" name="rateSlider" value="9" min="0" max="25" step="0.1" data-sync="rate" /><input class="mini-input" type="number" name="rate" value="9" min="0" max="25" step="0.1" data-sync="rateSlider" /></span></label>
+              <label class="range-field">Loan tenure (years) <span><input type="range" name="yearsSlider" value="5" min="1" max="30" step="1" data-sync="years" /><input class="mini-input" type="number" name="years" value="5" min="1" max="30" step="1" data-sync="yearsSlider" /></span></label>
+            </div>
+            <div class="calculator-result"><span>Monthly EMI</span><strong data-result="emi">-</strong><small data-result="total">-</small><small data-result="interest">-</small></div>
+          </form>
+
+          <form class="calculator-card" id="calc-retirement" data-calculator-panel="retirement">
+            <div class="calculator-copy">
+              <h2>Retirement Corpus Calculator</h2>
+              <p>Estimate the corpus needed to support monthly expenses in retirement.</p>
+              <ul class="calculator-tips"><li>This uses a simple expense multiple estimate.</li><li>Review with income, inflation and risk assumptions.</li></ul>
+            </div>
+            <div class="calculator-fields">
+              <label>Current monthly expense <input type="number" name="expense" value="50000" min="0" /></label>
+              <label class="range-field">Years until retirement <span><input type="range" name="yearsToRetireSlider" value="25" min="1" max="45" step="1" data-sync="yearsToRetire" /><input class="mini-input" type="number" name="yearsToRetire" value="25" min="1" max="45" step="1" data-sync="yearsToRetireSlider" /></span></label>
+              <label class="range-field">Retirement years <span><input type="range" name="retirementYearsSlider" value="25" min="1" max="40" step="1" data-sync="retirementYears" /><input class="mini-input" type="number" name="retirementYears" value="25" min="1" max="40" step="1" data-sync="retirementYearsSlider" /></span></label>
+              <label class="range-field">Inflation (%) <span><input type="range" name="inflationSlider" value="6" min="0" max="12" step="0.1" data-sync="inflation" /><input class="mini-input" type="number" name="inflation" value="6" min="0" max="12" step="0.1" data-sync="inflationSlider" /></span></label>
+            </div>
+            <div class="calculator-result"><span>Estimated corpus needed</span><strong data-result="corpus">-</strong><small data-result="futureExpense">-</small></div>
+          </form>
+
+          <form class="calculator-card" id="calc-goal" data-calculator-panel="goal">
+            <div class="calculator-copy">
+              <h2>Goal Savings Calculator</h2>
+              <p>Estimate monthly investment needed for a future goal.</p>
+              <ul class="calculator-tips"><li>Useful for education, home goals and planned purchases.</li><li>Start earlier to reduce monthly pressure.</li></ul>
+            </div>
+            <div class="calculator-fields">
+              <label>Target amount <input type="number" name="target" value="1000000" min="0" /></label>
+              <label class="range-field">Expected annual return (%) <span><input type="range" name="rateSlider" value="10" min="0" max="25" step="0.1" data-sync="rate" /><input class="mini-input" type="number" name="rate" value="10" min="0" max="25" step="0.1" data-sync="rateSlider" /></span></label>
+              <label class="range-field">Time period (years) <span><input type="range" name="yearsSlider" value="8" min="1" max="40" step="1" data-sync="years" /><input class="mini-input" type="number" name="years" value="8" min="1" max="40" step="1" data-sync="yearsSlider" /></span></label>
+            </div>
+            <div class="calculator-result"><span>Monthly investment needed</span><strong data-result="monthly">-</strong><small data-result="target">-</small></div>
+          </form>
+        </div>
+
+        <p class="calculator-disclaimer">These tools use simplified assumptions and do not include taxes, exit loads, insurance charges, inflation adjustments except where shown, or product-specific costs. Please consult before making financial decisions.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer"><div class="container"><p>&copy; 2026 Vinayak Finvest. All rights reserved.</p><p class="risk-note">Mutual fund investments are subject to market risks. Please read all scheme-related documents carefully before investing.</p></div></footer>
+  <a class="whatsapp-float" href="https://wa.me/918670099006?text=Hello%20Vinayak%20Finvest%2C%20I%20want%20to%20know%20more%20about%20financial%20planning." target="_blank" rel="noopener" aria-label="Chat with Vinayak Finvest on WhatsApp" title="Chat on WhatsApp"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.04 3C8.86 3 3.03 8.7 3.03 15.72c0 2.24.6 4.42 1.74 6.35L3 29l7.11-1.82a13.25 13.25 0 0 0 5.93 1.43c7.18 0 13.01-5.7 13.01-12.72S23.22 3 16.04 3Zm0 23.36c-1.9 0-3.76-.5-5.38-1.45l-.39-.23-4.22 1.08 1.12-4.01-.26-.41a10.37 10.37 0 0 1-1.6-5.62c0-5.78 4.81-10.48 10.73-10.48s10.73 4.7 10.73 10.48-4.81 10.64-10.73 10.64Zm5.88-7.84c-.32-.16-1.9-.91-2.2-1.02-.29-.1-.5-.16-.72.16-.21.31-.83 1.02-1.02 1.22-.19.21-.38.23-.7.08-.32-.16-1.36-.49-2.59-1.55-.96-.83-1.61-1.86-1.8-2.17-.19-.31-.02-.48.14-.64.15-.14.32-.37.48-.55.16-.18.21-.31.32-.52.11-.21.05-.39-.03-.55-.08-.16-.72-1.7-.99-2.33-.26-.61-.53-.53-.72-.54h-.61c-.21 0-.55.08-.83.39-.29.31-1.1 1.05-1.1 2.56s1.13 2.98 1.29 3.18c.16.21 2.22 3.31 5.38 4.64.75.31 1.34.5 1.8.64.76.23 1.45.2 1.99.12.61-.09 1.9-.76 2.17-1.49.27-.73.27-1.36.19-1.49-.08-.13-.29-.21-.61-.36Z"/></svg></a>
+  <script src="assets/calculators.js"></script>
+</body>
+</html>
