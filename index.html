@@ -110,16 +110,28 @@
     }
 
     .brand-badge {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: linear-gradient(145deg, var(--brand), #18a394);
-      color: #fff;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 900;
-      box-shadow: 0 8px 16px rgba(15, 125, 115, 0.35);
+      width: 52px;
+      height: 42px;
+      display: block;
+      flex: 0 0 auto;
+    }
+
+    .brand-name {
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .hero-logo {
+      width: min(100%, 430px);
+      margin-bottom: 1.1rem;
+    }
+
+    .hero-logo img,
+    .brand-badge img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     .top-nav {
@@ -818,6 +830,10 @@
         display: none;
       }
 
+      .hero-logo {
+        width: min(100%, 360px);
+      }
+
       .hero-actions .btn {
         flex: 1 1 220px;
       }
@@ -873,8 +889,10 @@
   <header class="topbar">
     <div class="container topbar-inner">
       <a href="#top" class="brand" aria-label="Vinayak Finvest Home">
-        <span class="brand-badge">VF</span>
-        Vinayak Finvest
+        <span class="brand-badge" aria-hidden="true">
+          <img src="assets/logo.png" alt="" />
+        </span>
+        <span class="brand-name">Vinayak Finvest</span>
       </a>
       <nav class="top-nav" aria-label="Main Navigation">
         <a href="#offer">Offer</a>
@@ -890,6 +908,9 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
+          <!-- <div class="hero-logo" aria-label="Vinayak Finvest logo">
+            <img src="assets/logo-removebg-preview.png" alt="Vinayak Finvest logo" />
+          </div> -->
           <span class="tag">Customer First Wealth Advisory</span>
           <h1>Plan Smart. Invest Better. <span class="headline-accent">Retire Free.</span></h1>
           <p class="lead">Vinayak Finvest helps individuals and families turn scattered investing into a focused wealth plan with clear milestones and real retirement confidence.</p>
@@ -1071,7 +1092,7 @@
           <p>Complete this form and Vinayak Finvest will contact you with the next steps for your personalized discovery call.</p>
         </div>
 
-        <form class="contact-form" action="https://formsubmit.co/sourabhs658@gmail.com" method="POST">
+        <form class="contact-form" action="https://formsubmit.co/8a6b21f3a637cd6ecda96e3eb9ede1bb" method="POST">
           <input type="hidden" name="_subject" value="New Discovery Call Lead - Vinayak Finvest" />
           <input type="hidden" name="_template" value="table" />
           <input class="hidden-field" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
