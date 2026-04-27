@@ -1102,6 +1102,7 @@
         <form class="contact-form" action="https://formsubmit.co/8a6b21f3a637cd6ecda96e3eb9ede1bb" method="POST">
           <input type="hidden" name="_subject" value="New Discovery Call Lead - Vinayak Finvest" />
           <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_replyto" id="replyToEmail" value="" />
           <input type="hidden" name="Submission ID" id="submissionId" value="" />
           <input type="hidden" name="Submitted At" id="submittedAt" value="" />
@@ -1383,18 +1384,37 @@
             Accept: 'application/json'
           }
         }).then(function (response) {
-          if (!response.ok) {
-            return response.text().then(function (message) {
+          return response.text().then(function (message) {
+            var contentType = response.headers.get('content-type') || '';
+
+            if (!response.ok) {
               throw new Error(message || 'Submission failed');
-            });
-          }
+            }
 
-          showStatus('You are on the way to your financial journey.', 'success');
+            if (contentType.indexOf('application/json') === -1 && /almost there|captcha|spam/i.test(message)) {
+              throw new Error('FormSubmit is asking for CAPTCHA verification. Please refresh the page and submit again.');
+            }
 
-          leadForm.reset();
-          leadForm.classList.remove('was-validated');
-          closeModal();
-          openSuccessModal();
+            if (contentType.indexOf('application/json') !== -1 && message) {
+              try {
+                var result = JSON.parse(message);
+                if (result.success === false) {
+                  throw new Error(result.message || 'Submission failed');
+                }
+              } catch (error) {
+                if (error.message && error.message !== 'Unexpected end of JSON input') {
+                  throw error;
+                }
+              }
+            }
+
+            showStatus('You are on the way to your financial journey.', 'success');
+
+            leadForm.reset();
+            leadForm.classList.remove('was-validated');
+            closeModal();
+            openSuccessModal();
+          });
         }).catch(function (error) {
           showStatus(error.message || 'Could not submit right now. Please try again.', 'error');
           resetSubmitButton();
